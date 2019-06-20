@@ -1,18 +1,34 @@
-<h1 class="title">Ingrédients pour un <%= @cocktail.name %></h1>
 
-<ul>
-  <% @cocktail.ingredients.each do |ingredient| %>
-    <li>
-      <%= ingredient.name %>
-    </li>
-  <% end %>
-</ul>
 
-<h3> <%= link_to 'back to index', cocktails_path %></h3>
 
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient %>
-  <%= f.submit %>
-<% end %>
 
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Ingrédients pour un <%= @cocktail.name %></h1>
+     <hr class="my-4">
+     <div class="ingredient d-flex" >
+
+
+      <div class="px-2">
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description, hint:  "cl, feuille ..." %>
+        <%= f.association :ingredient %>
+        <%= f.submit "Ajouter"%>
+        <% end %>
+      </div>
+
+      <div class="card-text" style="width: 20rem;">
+        <% @cocktail.doses.each do |dose| %>
+        <p  >
+          <%=  dose.ingredient.name %> <i><%=  dose.description %></i>
+         <a <%= link_to "  suppr", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } %><a>
+          <% end %>
+        </p>
+      </div>
+
+    <p class="lead"></p>
+  </div>
+   <hr class="my-4">
+  <a class="btn btn-primary" <%= link_to 'Revenir aux Cocktails', cocktails_path %></a>
+</div>

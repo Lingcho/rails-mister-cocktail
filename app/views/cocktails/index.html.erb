@@ -1,11 +1,27 @@
-<h1>Select your cocktail 🥂</h1>
 
-<ul>
-  <% @cocktails.each do |cocktail| %>
-    <li>
-      <%= link_to cocktail.name, cocktail_path(cocktail) %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "Add a cocktail 😎", new_cocktail_path %>
+<div class="jumbotron">
+  <h2 class="display-4">Les Cocktails 🍹</h2>
+  <p class="lead">Voici les créations</p>
+  <a class="btn btn-primary"<%= link_to 'Add a new cocktail', new_cocktail_path %></a>
+  <hr class="my-4">
+  <div class="container d-inline-flex">
+    <% @cocktails.each do |cocktail| %>
+    <div class="card" style="width: 18rem;">
+
+      <img src="https://images.pexels.com/photos/605408/pexels-photo-605408.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="cocktail_img" height="200px">
+      <img >
+        <div class="card-body">
+          <h5 class="card-title"><%= cocktail.name %></h5>
+          <a href="<%= cocktail_path(cocktail) %>" class="btn btn-success">Plus...</a>
+
+        </div>
+        <a class="btn btn-warning"<%= link_to "Delete", cocktail_path(cocktail), method: :delete, data: { confirm: "Are you sure?" } %></a>
+    </div>
+
+    <% end %>
+  </div>
+
+</div>
+
+
 

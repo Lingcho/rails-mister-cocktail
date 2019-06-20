@@ -1,4 +1,9 @@
-<%= simple_form_for(@cocktail) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+
+  <h1>New Cocktail 🍸</h1>
+
+  <%= render 'form', cocktail: @cocktail %>
+
+  <p><%= link_to 'Back to list', cocktails_path %></p>
+
+</div>
