@@ -1,7 +1,13 @@
 
   class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+
+    if params[:query].present?
+      @cocktails = Cocktail.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @cocktails = Cocktail.all
+    end
+      @ingredients = Ingredient.all
   end
 
   def show
@@ -12,7 +18,7 @@
 
   def new
     @cocktail = Cocktail.new
-    @ingredients = Ingredient.all
+
   end
 
   def create
@@ -36,7 +42,7 @@
     @cocktail = Cocktail.find(params[:id])
     @cocktail.destroy
     flash[:notice] = 'Votre cocktail a été supprimé'
-    redirect_to root_path
+    redirect_to cocktails_path
   end
 
   private

@@ -1,0 +1,10 @@
+<div class="container">
+
+ <div class="px-2">
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description, hint:  "cl, feuille ..." %>
+        <%= f.association :ingredient %>
+        <%= f.submit "editer"%>
+        <% end %>
+  </div>
+</div>

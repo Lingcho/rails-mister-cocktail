@@ -22,7 +22,9 @@
         <% @cocktail.doses.each do |dose| %>
         <p  >
           <%=  dose.ingredient.name %> <i><%=  dose.description %></i>
-         <a <%= link_to "  suppr", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } %><a>
+          <a <%= link_to " (modif)", edit_cocktail_dose_path(dose)%><a>
+         <a <%= link_to " (suppr)", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } %><a>
+
           <% end %>
         </p>
       </div>
