@@ -15,14 +15,21 @@
   <div class="container d-inline-flex">
     <% @cocktails.each do |cocktail| %>
     <div class="card" style="width: 18rem;">
+      <% if cocktail.photo.blank? %>
+      <img src="https://images.pexels.com/photos/2508735/pexels-photo-2508735.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=270&w=229" alt="" style="height: 270px;  width: auto;">
 
-      <img src="https://images.pexels.com/photos/605408/pexels-photo-605408.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="cocktail_img" height="200px">
-      <img >
+      <% else %>
+      <%= cl_image_tag cocktail.photo, height: 270, width: 229, crop: :fill %>
+      <% end %>
+
         <div class="card-body">
           <h5 class="card-title"><%= cocktail.name %></h5>
           <a href="<%= cocktail_path(cocktail) %>" class="btn btn-success">Plus...</a>
 
         </div>
+                  <a <%= link_to " (modif)", edit_cocktail_path(cocktail)%><a>
+
+
         <a class="btn btn-warning"<%= link_to "Delete", cocktail_path(cocktail), method: :delete, data: { confirm: "Are you sure?" } %></a>
     </div>
 

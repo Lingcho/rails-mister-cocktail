@@ -21,10 +21,17 @@
 
   end
 
+  def edit
+      @cocktail = Cocktail.find(params[:id])
+
+  end
+
   def create
     @cocktail = Cocktail.new(cocktail_params)
     @dose = Dose.new
     @ingredients = Ingredient.all
+
+
     if @cocktail.save
       redirect_to cocktail_path(@cocktail)
     else
@@ -35,7 +42,7 @@
   def update
     @cocktail = Cocktail.find(params[:id])
     @cocktail.update(cocktail_params)
-    redirect_to cocktail_path(@cocktail)
+    redirect_to cocktails_path
   end
 
   def destroy
@@ -48,6 +55,6 @@
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :photo, :description)
+    params.require(:cocktail).permit(:name, :photo, :description, :photo_cache)
   end
 end

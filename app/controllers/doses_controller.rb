@@ -9,12 +9,19 @@ class DosesController < ApplicationController
     @dose = Dose.new(dose_params)
     @cocktail = Cocktail.find(params[:cocktail_id])
     @dose.cocktail = @cocktail
+
     if @dose.save
       redirect_to cocktail_path(@dose.cocktail)
     else
       redirect_to cocktail_path(@dose.cocktail)
     end
   end
+
+  def photo_will_change
+     @photo = ActionDispatch.new(dose_params)
+
+  end
+
   def edit
       @dose = Dose.find(params[:id])
 
@@ -33,6 +40,6 @@ class DosesController < ApplicationController
   end
 
   def dose_params
-    params.require(:dose).permit(:description, :ingredient_id)
+    params.require(:dose).permit(:description, :ingredient_id, :photo)
   end
 end

@@ -5,4 +5,6 @@ class Dose < ApplicationRecord
   validates :cocktail, presence: true
   validates :ingredient, presence: true
   validates :cocktail, uniqueness: { scope: :ingredient }
+  mount_uploader :photo, PhotoUploader
+
 end

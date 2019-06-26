@@ -234,7 +234,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap (>= 1.1.0)
   byebug
-  carrierwave (~> 1.2)
+  carrierwave
   cloudinary
   coffee-rails (~> 4.2)
   dotenv-rails
